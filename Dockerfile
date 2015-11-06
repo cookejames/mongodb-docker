@@ -9,13 +9,13 @@ RUN echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen
 RUN apt-get update && apt-get install -y mongodb-org
 
 # Define mountable directories.
-VOLUME ["/data/db"]
+VOLUME ["/data/db", "/data/logs"]
 
 # Define working directory.
-#WORKDIR /data
+WORKDIR /data
 
 # Expose port 27017 from the container to the host
 EXPOSE 27017
 
 # Set usr/bin/mongod as the dockerized entry-point application
-ENTRYPOINT usr/bin/mongod
+ENTRYPOINT ["/usr/bin/mongod"]
